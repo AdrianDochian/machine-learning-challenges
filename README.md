@@ -151,7 +151,8 @@ Due to this fact, the testing process will produce relevant results.
 #### Axis evolution distribution per gesture
 
 ```
-In the following images we can see the mean value ranges of each axis evolution with respect to a gesture.
+In the following images we can see the mean value ranges of each axis evolution
+ with respect to a gesture.
 dim_0 is X axis
 dim_1 is Y axis
 dim_2 is Z axis
@@ -201,8 +202,10 @@ We can see some rare spikes during the period which may be the results of big ga
 <a name="pems-sf"></a>
 
 ```
-In the case of Random Forest, SVM, and Extreme Gradient Boosted Trees i've executed a GridSearch over the train data and found the best hyperparameters.
-With these hyperparameters I constructed the corresponding instance of the classifier, trained it and computed the results with respect to test data.
+In the case of Random Forest, SVM, and Extreme Gradient Boosted Trees
+ i've executed a GridSearch over the train data and found the best hyperparameters.
+With these hyperparameters I constructed the corresponding instance of the classifier,
+ trained it and computed the results with respect to test data.
 ```
 
 ### PEMS-SF
