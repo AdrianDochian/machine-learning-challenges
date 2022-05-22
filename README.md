@@ -1,5 +1,6 @@
 ### Table of Contents
 
+- **[Introduction](#introduction)**
 - **[Exploratory Data Analysis](#exploratory_data_analysis)**
   - **[Class Equilibrium](#class_equilibrium)**
   - **[U Wave Gesture axis evolution](#u_wave_gesture_axis_evolution)**
@@ -29,6 +30,35 @@
   - **[U Wave Gesture](#u_wave_gesture_final_overview)**
     - **[Accuracy](#u_wave_gesture_final_overview_accuracy)**
     - **[Algorithms efficiency with respect to classes](#u_wave_gesture_final_overview_algorithms)**
+    - **[Algorithms train loss curves](#algorithms_train_loss_curves)**
+
+<a name="introduction"></a>
+
+## Introduction
+
+```
+In this project i'm experiencing with couple of machine learning algorithms:
+  - Classic ones:
+    - Random forest
+    - Support Vector Machines
+    - Extreme Gradient Boosting trees
+  - Neural networks:
+    - Multi Layered Perceptron
+    - Convolutional Neural Networks
+    - Long Short-Term Memory Networks
+
+These algorithms are used on two datasets:
+  - PEMS-SF
+    - It contains information about days of the week activity (7 days of the week).
+    - A row contains 963 columns (963 sensors)
+    - A dataset element represents a sensor activity (chosen column) in that particular day (chosen row)
+
+  - U Wave Gesture
+    - It contains information acquisitioned by accelerometers.
+    - Each row represents a different gesture (We have 8 gestures in total)
+    - Each row contains 3 columns (3 axis evolution: ox, oy, oz)
+    - A dataset element represents a particular axis evolution in time (chosen column) for a particular gesture (chosen row)
+```
 
 <a name="exploratory_data_analysis"></a>
 
@@ -38,17 +68,37 @@
 
 ### Class Equilibrium
 
+```
+We observe that classes are balanced.
+The training process will not be affected by an imbalance in the train data.
+```
+
 ![ML](readme_resources/pems_sf_train_data.png)
 
 <br/>
+
+```
+We observe that classes are balanced.
+Due to this fact, the testing process will produce relevant results.
+```
 
 ![ML](readme_resources/pems_sf_test_data.png)
 
 <br/>
 
+```
+We observe that classes are balanced.
+The training process will not be affected by an imbalance in the train data.
+```
+
 ![ML](readme_resources/u_wave_gesture_train_data.png)
 
 <br/>
+
+```
+We observe that classes are balanced.
+Due to this fact, the testing process will produce relevant results.
+```
 
 ![ML](readme_resources/u_wave_gesture_test_data.png)
 
@@ -59,6 +109,12 @@
 <a name="random_example_for_each_gesture"></a>
 
 #### Random example for each gesture
+
+```
+	Will follow a random a example for each gesture in the dataset.
+	We can observe the evolution of the 3 axis in time.
+	We can observe that the Gestures are ochiometrically different
+```
 
 ![ML](readme_resources/gesture_1.png)
 
@@ -94,6 +150,13 @@
 
 #### Axis evolution distribution per gesture
 
+```
+In the following images we can see the mean value ranges of each axis evolution with respect to a gesture.
+dim_0 is X axis
+dim_1 is Y axis
+dim_2 is Z axis
+```
+
 ![ML](readme_resources/dim_0_evolution.png)
 
 <br/>
@@ -112,11 +175,22 @@
 
 #### Best sensors deviation week days
 
+```
+I've chosen the sensor with the highest variation in the acquisitioned data.
+For each day i've chosen 8 examples and printed the range in the occupation rate.
+```
+
 ![ML](readme_resources/weeks_best_sensor_variation.png)
 
 <a name="best_sensors_occupation_rate_year_evolution"></a>
 
 #### Best sensors occupation rate year evolution
+
+```
+For this example i've chosen the sensors with the most interesting information.
+I've printed the mean occupation rate evolution during a year for each of these sensors.
+We can see some rare spikes during the period which may be the results of big gatherings of people
+```
 
 ![ML](readme_resources/occupation_rate_year_evolution.png)
 
@@ -125,6 +199,11 @@
 ## Feature selection & classic algorithms
 
 <a name="pems-sf"></a>
+
+```
+In the case of Random Forest, SVM, and Extreme Gradient Boosted Trees i've executed a GridSearch over the train data and found the best hyperparameters.
+With these hyperparameters I constructed the corresponding instance of the classifier, trained it and computed the results with respect to test data.
+```
 
 ### PEMS-SF
 
@@ -362,6 +441,10 @@
 #### Multi-Layered Perceptron
 
 ```
+The neural network architecture consists of 5 layers of 100 neurons each.
+```
+
+```
 {
 	"accuracy_score": 0.853125,
 	"precision_score": [0.9, 0.90697674, 0.85714286, 0.9, 0.68627451,
@@ -397,6 +480,14 @@
 #### Convolutional Neural Network
 
 ```
+First two convolutional layers produce the feature maps.
+The Drouput layer is very important. It manages to remove the outliers from the feature maps
+and to keep only the relevant attributes.
+```
+
+![ML](readme_resources/cnn_architecture.png)
+
+```
 {
 	"accuracy_score": 0.859375,
 	"precision_score": [0.94594595, 0.86666667, 0.8372093, 0.86666667, 0.74,
@@ -422,6 +513,12 @@
 <a name="lstm"></a>
 
 #### Long short-term memory
+
+```
+In this architecture the first layer does all the work.
+```
+
+![ML](readme_resources/lstm_architecture.png)
 
 ```
 {
@@ -511,5 +608,11 @@
 <br/>
 
 ![ML](readme_resources/u_wave_gesture_lstm_scores_on_classes_distribution.png)
+
+<a name="algorithms_train_loss_curves"></a>
+
+#### Algorithms train loss curves
+
+![ML](readme_resources/algorithms_train_loss_curves.png)
 
 <hr/>
